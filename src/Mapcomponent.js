@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from "react";
-import { GoogleMap, LoadScript, Marker, DirectionsRenderer } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, } from "@react-google-maps/api";
 import axios from "axios";
 import "./App.css";
 import { useLocation } from "react-router-dom";
@@ -21,7 +21,6 @@ const storeLocation = (location) => {
 };
 
 const MapComponent = () => {
-  const pathParts = window.location.pathname.split('/');
   const riderId = 0;
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -42,7 +41,6 @@ const MapComponent = () => {
   });
 
   const [iconSize, setIconSize] = useState(null);
-  const [driverInfo, setDriverInfo] = useState({});
   const [status, setStatus] = useState("connecting");
   const [lastUpdate, setLastUpdate] = useState("");
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -316,7 +314,6 @@ const MapComponent = () => {
       );
       if (res.data && res.data.length > 0) {
         const rider = res.data[0];
-        setDriverInfo(rider);
 
         const lat = rider.latitude ? parseFloat(rider.latitude) : null;
         const lng = rider.longitude
